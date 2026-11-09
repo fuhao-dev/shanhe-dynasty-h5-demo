@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#214f44">
+  <meta name="description" content="执掌一方山河，巡天寻脉，培养仙师。山河纪是一款可离线游玩的仙侠王朝经营 H5 DEMO。">
+  <title>山河纪 · 王朝模拟器</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="engine.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="i-mountain" viewBox="0 0 24 24"><path d="m2 19 7-13 4 7 3-5 6 11H2Z M6.3 11l2.7 2 2.2-2.3 M14.5 10.5l2 2 1.4-1"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6L12 2Z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4c4-1 6 0 9 2 3-2 5-3 9-2v15c-4-1-6 0-9 2-3-2-5-3-9-2V4Zm9 2v15 M6 8l3 1 M15 9l3-1 M6 12l3 1 M15 13l3-1"/></symbol>
+    <symbol id="i-deer" viewBox="0 0 24 24"><path d="M8 10 5 5V2 M5 5 2 4 M16 10l3-5V2 M19 5l3-1 M7 10l5 2 5-2-1 8-4 4-4-4-1-8Z M10 15h.1 M14 15h.1 M11 19h2"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M4 20c0-9 3-16 16-16 0 13-7 16-16 16Zm0 0L16 8 M6 14l5 1 M10 9l1 6"/></symbol>
+    <symbol id="i-sword" viewBox="0 0 24 24"><path d="m7 15 11-12 3 0v3L9 17 M5 12l7 7 M3 21l5-5 M2 19l3 3"/></symbol>
+    <symbol id="i-chest" viewBox="0 0 24 24"><path d="M3 10V6l3-3h12l3 3v4H3Zm0 0v11h18V10 M10 9v5h4V9 M7 3v7 M17 3v7"/></symbol>
+    <symbol id="i-scroll" viewBox="0 0 24 24"><path d="M6 3h13v15a3 3 0 0 1-3 3H6a3 3 0 0 1 0-6h10v3a3 3 0 0 0 3 3 M6 3a3 3 0 0 0 0 6h2V3 M9 8h6 M9 12h6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14 M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12 M6 18 18 6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 1v3 M12 20v3 M1 12h3 M20 12h3 M4 4l2 2 M18 18l2 2 M4 20l2-2 M18 6l2-2"/></symbol>
+  </defs></svg>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#world" data-view="world" aria-label="山河纪首页"><span class="brand-seal">山<br>河</span><span><strong>山河纪</strong><small>王 朝 模 拟 器</small></span></a>
+      <div class="sidebar-caption">执掌山河 · 问道长生</div>
+      <nav class="nav" aria-label="主要页面">
+        <button class="nav-item active" data-view="world"><svg><use href="#i-mountain"/></svg><span>巡天山河</span><i>01</i></button>
+        <button class="nav-item" data-view="cultivation"><svg><use href="#i-spark"/></svg><span>仙师修行</span><i>02</i></button>
+        <button class="nav-item" data-view="treasures"><svg><use href="#i-book"/></svg><span>万象养成</span><i>03</i></button>
+        <button class="nav-item" data-view="chronicle"><svg><use href="#i-scroll"/></svg><span>山河志</span><i>04</i></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-verse">一念起，万山青。<br>一朝成，百川应。</div>
+        <button class="text-button" data-action="help">玩法与存档 <span>↗</span></button>
+        <div class="build-label"><span class="status-dot"></span> H5 DEMO · v0.1</div>
+      </div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="page-heading"><span class="eyebrow">山河有灵 · 万象初生</span><h1 id="page-title">巡天山河</h1></div>
+        <div class="resources" aria-label="王朝资源">
+          <div class="resource"><span class="resource-gem crystal">◇</span><span><small>玄晶</small><b id="res-crystal">120</b></span></div>
+          <div class="resource"><span class="resource-gem jade">◈</span><span><small>灵璧</small><b id="res-jade">40</b></span></div>
+          <div class="resource"><span class="resource-gem luck">✧</span><span><small>国运</small><b id="res-luck">0</b></span></div>
+        </div>
+        <button class="icon-button help-button" data-action="help" aria-label="玩法帮助">?</button>
+      </header>
+      <main>
+        <div class="demo-note"><span>试玩卷</span> 巡天寻脉，聚灵成国。数值与时间已加速，体验一段王朝初兴。<button data-action="help">查看说明 ↗</button></div>
+        <section id="view-world" class="view active" aria-labelledby="page-title">
+          <div class="overview-grid">
+            <div class="world-column">
+              <div class="world-art" id="world-art">
+                <img class="world-image" src="assets/shanhe-world.png" alt="青绿群山环抱王城，金顶仙宫与清溪相映">
+                <div class="world-shade"></div>
+                <div class="world-heading"><span class="world-seal">上清境</span><div><span class="eyebrow">YOUR LITTLE DYNASTY</span><h2>此间山河，皆由你起</h2></div></div>
+                <div class="weather"><svg><use href="#i-sun"/></svg> 云开 · 灵气和畅</div>
+                <div class="scan-wave" aria-hidden="true"></div>
+                <button class="map-point point-vein" data-action="openVein"><span class="point-icon"><svg><use href="#i-mountain"/></svg></span><span class="point-label">龙脉 <b id="map-veins">2</b></span></button>
+                <button class="map-point point-palace" data-action="openDynasty"><span class="point-icon"><svg><use href="#i-spark"/></svg></span><span class="point-label">王朝大殿</span></button>
+                <button class="map-point point-beast" data-action="openBeast"><span class="point-icon"><svg><use href="#i-deer"/></svg></span><span class="point-label">灵兽苑</span></button>
+                <div class="world-coordinate">九州 · 东南一隅<br><span>山川长在，来日方长</span></div>
+                <div class="scan-console">
+                  <div class="scan-status"><span class="status-dot" id="scan-dot"></span><span id="scan-label">山河静候 · 尚未巡天</span><span id="scan-percent">0%</span></div>
+                  <div class="scan-track"><span id="scan-fill"></span></div>
+                  <div class="scan-actions"><button class="primary" data-action="toggleScan" id="scan-button"><svg><use href="#i-spark"/></svg> 开启巡天</button><button class="focus-button" data-action="focus" id="focus-button">凝神 <span>加速探索</span></button></div>
+                </div>
+              </div>
+              <div class="world-stats">
+                <div><span class="stat-icon"><svg><use href="#i-sword"/></svg></span><span><small>王朝总战力</small><strong id="world-power">2,000</strong></span></div>
+                <div><span class="stat-icon"><svg><use href="#i-spark"/></svg></span><span><small>治下仙师</small><strong id="world-pop">20 <em>位</em></strong></span></div>
+                <div><span class="stat-icon"><svg><use href="#i-leaf"/></svg></span><span><small>灵气余量</small><strong id="world-aura">180</strong></span></div>
+              </div>
+            </div>
+            <aside class="right-rail">
+              <section class="dynasty-card">
+                <div class="card-eyebrow">王朝境界 <span id="stage-number">壹 / 陆</span></div>
+                <div class="dynasty-ornament" aria-hidden="true">山</div>
+                <h2 id="stage-name">清气初生</h2><p id="stage-flavor">一缕清气，万物始生。</p>
+                <div class="stage-progress-label"><span id="next-stage-label">下一境 · 灵露凝华</span><b id="stage-percent">20%</b></div>
+                <div class="progress-track"><span id="stage-fill"></span></div>
+                <div class="stage-power" id="stage-power">2,000 / 10,000 战力</div>
+                <button class="advance-button" id="advance-button" data-action="advance">王朝进阶 <svg><use href="#i-arrow"/></svg></button>
+              </section>
+              <section class="encounter-card" id="encounter-card"><div class="section-label"><span>巡天奇遇</span><span class="small-tag">待寻</span></div><div id="encounter-content"></div></section>
+              <section class="quest-card"><div class="section-label"><span>山河愿景</span><button class="text-button" data-view="chronicle">全部 ↗</button></div><div id="quest-preview"></div></section>
+            </aside>
+          </div>
+          <section class="section-block"><div class="section-heading"><div><span class="eyebrow">A DYNASTY IN THE MAKING</span><h2>万象，皆在生长</h2></div><button class="text-button" data-view="treasures">前往养成 <svg><use href="#i-arrow"/></svg></button></div>
+            <div class="quick-grid">
+              <button class="quick-card" data-action="openVein"><span class="quick-symbol"><svg><use href="#i-mountain"/></svg></span><span><small>山河之根</small><h3>龙脉纳灵</h3><p id="quick-vein">灵气供给 200</p></span><span class="quick-arrow">↗</span></button>
+              <button class="quick-card" data-view="cultivation"><span class="quick-symbol"><svg><use href="#i-spark"/></svg></span><span><small>王朝之基</small><h3>仙师修行</h3><p id="quick-cultivation">淬骨境 · 自动培养中</p></span><span class="quick-arrow">↗</span></button>
+              <button class="quick-card deer-card" data-action="openBeast"><span><small>天地灵伴</small><h3>白鹿听风</h3><p id="quick-beast">以灵果温养，佑护众生</p></span><img src="assets/spirit-deer.png" alt="玉角白鹿"><span class="quick-arrow">↗</span></button>
+            </div>
+          </section>
+        </section>
+        <section id="view-cultivation" class="view"><div class="intro-row"><div><h2>百川归海，众生入道</h2><p>各境界独立修炼，龙脉灵气决定王朝能够容纳多少仙师。</p></div><button class="outline-button" data-action="openVein">管理龙脉 ↗</button></div><div class="aura-banner" id="aura-banner"></div><div class="realm-grid" id="realm-grid"></div><div class="explain-panel"><svg><use href="#i-book"/></svg><p><b>修行之理</b>仙师按整批自动增长。灵气余量够容纳下一批时，修炼才会开始；已经开始的批次会继续结算。开启剑道后，新仙师约六成走剑修一途，剑道与长城的百分比加成作用于剑修群体。</p></div></section>
+        <section id="view-treasures" class="view"><div class="intro-row"><div><h2>一草一木，皆可问道</h2><p>培养材料来自巡天与愿景。选一条路径，塑造属于你的王朝。</p></div></div><div class="material-bar" id="material-bar"></div><div class="treasure-grid" id="treasure-grid"></div></section>
+        <section id="view-chronicle" class="view"><div class="intro-row"><div><h2>青山为证，记此来路</h2><p>从初生清气，到玉泉漱石，每一次成长都有回响。</p></div><button class="outline-button" data-action="help">存档管理 ↗</button></div><div id="milestones" class="milestones"></div><div class="chronicle-grid"><section class="paper-panel"><div class="section-heading"><h2>山河愿景</h2><span class="muted">达成后手动领取</span></div><div id="quest-list"></div></section><section class="paper-panel"><div class="section-heading"><h2>起居注</h2><span class="muted">最近 60 条</span></div><ol id="log-list" class="log-list"></ol></section></div></section>
+        <footer><span>山河纪 · 王朝模拟器</span><span>独立 H5 玩法原型 · 自动保存在此浏览器</span><button class="text-button" data-action="save" id="save-status">已自动存档</button></footer>
+      </main>
+    </div>
+  </div>
+  <dialog id="game-dialog" aria-labelledby="dialog-title"><div class="dialog-heading"><span class="eyebrow" id="dialog-eyebrow">山河纪</span><button class="icon-button" data-action="closeDialog" aria-label="关闭弹窗"><svg><use href="#i-close"/></svg></button></div><div id="dialog-body"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
+</body>
+</html>
