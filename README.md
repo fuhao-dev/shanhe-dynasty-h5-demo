@@ -4,6 +4,7 @@
 
 ## 立即试玩
 
+- [在线试玩（私有访问）](https://shanhe-dynasty-demo-a1b9.dnwx-2-7512.chatgpt.site) · [GitHub 私有仓库](https://github.com/fuhao-dev/shanhe-dynasty-h5-demo)
 - Windows：双击 `启动DEMO.cmd`，或直接用现代浏览器打开 `dist/index.html`。全部资源在本地，无需安装依赖。
 - 开发预览：安装 Node.js 18 或更高版本，在此目录执行 `npm start`，访问 `http://127.0.0.1:4173`。
 - 静态部署：将 `dist` 目录完整上传到静态网站主机即可。所有素材使用相对路径，也能部署在网站子目录。
